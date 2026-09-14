@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .calculator {
+            width: 300px;
+            margin: auto;
+            padding: 25px;
+            border: 2px solid #333;
+            border-radius: 15px;
+        }
+
+        input, select, button {
+            width: 90%;
+            padding: 12px;
+            margin: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <h1>Simple Calculator</h1>
+
+    <input type="number" id="a" placeholder="Enter first number">
+    <input type="number" id="b" placeholder="Enter second number">
+
+    <select id="operation">
+        <option value="1">Addition</option>
+        <option value="2">Subtraction</option>
+        <option value="3">Multiplication</option>
+        <option value="4">Division</option>
+    </select>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function calculate() {
+    let a = parseFloat(document.getElementById("a").value);
+    let b = parseFloat(document.getElementById("b").value);
+    let choice = document.getElementById("operation").value;
+    let result;
+
+    if (isNaN(a) || isNaN(b)) {
+        result = "Please enter both numbers.";
+    } 
+    else if (choice === "1") {
+        result = a + b;
+    } 
+    else if (choice === "2") {
+        result = a - b;
+    } 
+    else if (choice === "3") {
+        result = a * b;
+    } 
+    else if (choice === "4") {
+        result = b !== 0 ? a / b : "Cannot divide by zero";
+    }
+
+    document.getElementById("result").innerHTML = "Result: " + result;
+}
+</script>
+
+</body>
+</html>
