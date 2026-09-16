@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Python Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+
     <style>
         body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 80px;
         }
@@ -17,7 +20,10 @@
             border-radius: 15px;
         }
 
-        input, select, button {
+        input,
+        select,
+        button {
+            box-sizing: border-box;
             width: 90%;
             padding: 12px;
             margin: 8px;
@@ -38,50 +44,64 @@
 
 <body>
 
-<div class="calculator">
-    <h1>Simple Calculator</h1>
+    <div class="calculator">
+        <h1>Simple Calculator</h1>
 
-    <input type="number" id="a" placeholder="Enter first number">
-    <input type="number" id="b" placeholder="Enter second number">
+        <input type="number" id="a" placeholder="Enter first number">
+        <input type="number" id="b" placeholder="Enter second number">
 
-    <select id="operation">
-        <option value="1">Addition</option>
-        <option value="2">Subtraction</option>
-        <option value="3">Multiplication</option>
-        <option value="4">Division</option>
-    </select>
+        <select id="operation">
+            <option value="1">Addition</option>
+            <option value="2">Subtraction</option>
+            <option value="3">Multiplication</option>
+            <option value="4">Division</option>
+        </select>
 
-    <button onclick="calculate()">Calculate</button>
+        <button type="button" onclick="calculate()">Calculate</button>
 
-    <div id="result"></div>
-</div>
+        <div id="result"></div>
+    </div>
 
-<script>
-function calculate() {
-    let a = parseFloat(document.getElementById("a").value);
-    let b = parseFloat(document.getElementById("b").value);
-    let choice = document.getElementById("operation").value;
-    let result;
+    <script>
+        function calculate() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const choice = document.getElementById("operation").value;
 
-    if (isNaN(a) || isNaN(b)) {
-        result = "Please enter both numbers.";
-    } 
-    else if (choice === "1") {
-        result = a + b;
-    } 
-    else if (choice === "2") {
-        result = a - b;
-    } 
-    else if (choice === "3") {
-        result = a * b;
-    } 
-    else if (choice === "4") {
-        result = b !== 0 ? a / b : "Cannot divide by zero";
-    }
+            let result;
 
-    document.getElementById("result").innerHTML = "Result: " + result;
-}
-</script>
+            if (Number.isNaN(a) || Number.isNaN(b)) {
+                result = "Please enter both numbers.";
+            } else {
+                switch (choice) {
+                    case "1":
+                        result = a + b;
+                        break;
+
+                    case "2":
+                        result = a - b;
+                        break;
+
+                    case "3":
+                        result = a * b;
+                        break;
+
+                    case "4":
+                        if (b === 0) {
+                            result = "Cannot divide by zero.";
+                        } else {
+                            result = a / b;
+                        }
+                        break;
+
+                    default:
+                        result = "Invalid operation.";
+                }
+            }
+
+            document.getElementById("result").textContent = "Result: " + result;
+        }
+    </script>
 
 </body>
 </html>
